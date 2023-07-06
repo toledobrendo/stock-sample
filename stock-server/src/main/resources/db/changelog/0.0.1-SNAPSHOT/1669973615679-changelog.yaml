@@ -1,0 +1,31 @@
+databaseChangeLog:
+- changeSet:
+    id: 1669973618477-1
+    author: btoledo (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: STOCKPK
+            name: ID
+            type: BIGINT
+        - column:
+            name: CREATED_BY
+            type: VARCHAR(255)
+        - column:
+            name: CREATED_DATE
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: UPDATED_BY
+            type: VARCHAR(255)
+        - column:
+            name: UPDATED_DATE
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: SHORTNAME
+            type: VARCHAR(255)
+        tableName: STOCK

@@ -1,0 +1,109 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.4'
+    id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+    id 'org.liquibase.gradle' version '2.0.4'
+}
+
+group = 'com.btagila'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.security:spring-security-test'
+    implementation 'org.springframework.security:spring-security-test'
+//    implementation 'org.springframework:spring-websocket:5.3.18';
+//    implementation 'org.springframework:spring-messaging:5.3.18';
+    implementation 'org.postgresql:postgresql:42.5.0'
+    implementation 'org.liquibase:liquibase-core'
+    implementation 'org.projectlombok:lombok'
+    implementation 'org.mapstruct:mapstruct:1.5.2.Final'
+    implementation 'org.mapstruct:mapstruct-processor:1.5.2.Final'
+    implementation 'net.coobird:thumbnailator:0.4.17'
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'com.btagila:commons:0.0.1-SNAPSHOT'
+    liquibaseRuntime 'org.springframework:spring-aspects:5.3.23'
+    liquibaseRuntime 'org.postgresql:postgresql:42.5.0'
+    liquibaseRuntime 'info.picocli:picocli:4.6.3'
+    liquibaseRuntime 'org.liquibase:liquibase-core:4.16.1'
+    liquibaseRuntime 'org.liquibase:liquibase-groovy-dsl:3.0.2'
+    liquibaseRuntime 'org.liquibase.ext:liquibase-hibernate5:4.17.2'
+    liquibaseRuntime 'org.springframework.data:spring-data-jpa'
+    liquibaseRuntime 'org.springframework:spring-orm'
+    liquibaseRuntime 'org.springframework.boot:spring-boot'
+    liquibaseRuntime 'mysql:mysql-connector-java'
+    liquibaseRuntime 'javax.xml.bind:jaxb-api'
+    liquibaseRuntime 'ch.qos.logback:logback-classic:1.4.1' // Fix for https://liquibase.jira.com/browse/CORE-3212
+    liquibaseRuntime 'org.yaml:snakeyaml:1.33'
+    liquibaseRuntime "jakarta.xml.bind:jakarta.xml.bind-api:4.0.0"
+    liquibaseRuntime 'com.btagila:commons:0.0.1-SNAPSHOT'
+    liquibaseRuntime sourceSets.main.output
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+ext {
+    currentMillis = new Date().getTime()
+    outputFile = "src/main/resources/db/changelog/${project.version}/${currentMillis}-changelog.yaml"
+    dbUsername = 'postgres'
+    dbPassword = 'postgres'
+    domainPath = 'com.btagila.stockserver.domain.entity'
+}
+
+diff.dependsOn compileJava
+diffChangeLog.dependsOn compileJava
+
+liquibase {
+    activities {
+        main {
+            driver 'org.postgresql.Driver'
+            url "jdbc:postgresql://localhost:5432/stock?currentSchema=public"
+            username "${dbUsername}"
+            password "${dbPassword}"
+            changeLogFile "${outputFile}"
+            referenceUrl "hibernate:spring:${domainPath}" +
+                    "?dialect=org.hibernate.dialect.PostgreSQL95Dialect";
+        }
+    }
+}
+
+task buildAndPublish {
+    dependsOn 'clean'
+    dependsOn 'build'
+
+    tasks.findByName('build').mustRunAfter 'clean'
+}
+
+task liquibaseDiff {
+    dependsOn tasks.findByPath("buildAndPublish")
+    dependsOn diffChangeLog
+
+//    tasks.findByName('diffChangeLog').mustRunAfter "buildAndPublish"
+}

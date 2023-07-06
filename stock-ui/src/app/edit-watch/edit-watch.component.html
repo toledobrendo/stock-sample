@@ -1,0 +1,22 @@
+<form (ngSubmit)="save()">
+  <h1>Edit Action</h1>
+  <mat-form-field>
+    <mat-label>Stock Name</mat-label>
+    <input [(ngModel)]="watch.name" name="stockName" matInput>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Watch Price</mat-label>
+    <input type="number" [(ngModel)]="watch.price" name="watchPrice" matInput>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Type</mat-label>
+    <mat-select [(ngModel)]="watch.action" name="watchAction">
+      <mat-option value="BUY">Buy</mat-option>
+      <mat-option value="SELL">Sell</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p class="mt-20">
+    <button type="submit" class="action-button" mat-raised-button color="primary" (click)="save()" class="mr-20">Save</button>
+    <button type="button" class="action-button" mat-raised-button color="primary" (click)="close()">Cancel</button>
+  </p>
+</form>

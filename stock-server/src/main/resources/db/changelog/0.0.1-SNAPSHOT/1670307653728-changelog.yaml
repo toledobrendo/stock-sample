@@ -1,0 +1,86 @@
+databaseChangeLog:
+- changeSet:
+    id: 1670307657349-1
+    author: btoledo (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: PRICEPK
+            name: ID
+            type: BIGINT
+        - column:
+            name: CREATED_BY
+            type: VARCHAR(255)
+        - column:
+            name: CREATED_DATE
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: UPDATED_BY
+            type: VARCHAR(255)
+        - column:
+            name: UPDATED_DATE
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: NAME
+            type: VARCHAR(255)
+        - column:
+            name: PRICE
+            type: numeric(19, 2)
+        - column:
+            name: VOLUME
+            type: numeric(19, 2)
+        tableName: PRICE
+- changeSet:
+    id: 1670307657349-2
+    author: btoledo (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: WATCHPK
+            name: ID
+            type: BIGINT
+        - column:
+            name: CREATED_BY
+            type: VARCHAR(255)
+        - column:
+            name: CREATED_DATE
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: UPDATED_BY
+            type: VARCHAR(255)
+        - column:
+            name: UPDATED_DATE
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: ACTION
+            type: INTEGER
+        - column:
+            name: PRICE
+            type: numeric(19, 2)
+        - column:
+            name: STOCK_ID
+            type: BIGINT
+        tableName: WATCH
+- changeSet:
+    id: 1670307657349-3
+    author: btoledo (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: STOCK_ID
+        baseTableName: WATCH
+        constraintName: FKmvqn5h5wbwogv0cckksfytc61
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: ID
+        referencedTableName: STOCK
+        validate: true

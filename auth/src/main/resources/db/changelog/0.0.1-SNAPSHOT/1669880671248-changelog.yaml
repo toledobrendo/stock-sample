@@ -1,0 +1,17 @@
+databaseChangeLog:
+- changeSet:
+    id: 1669880674381-1
+    author: btoledo (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: ORIGIN_URL
+            type: varchar(255)
+        tableName: APP
+- changeSet:
+    id: 1669880674381-2
+    author: btoledo (generated)
+    changes:
+    - sqlFile:
+        path: /db/changelog/0.0.1-SNAPSHOT/sql/20221201-update-app-origin.sql

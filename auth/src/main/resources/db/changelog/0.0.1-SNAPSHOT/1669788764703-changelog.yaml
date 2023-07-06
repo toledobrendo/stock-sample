@@ -1,0 +1,67 @@
+databaseChangeLog:
+- changeSet:
+    id: 1669788767035-1
+    author: btoledo (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: APPPK
+            name: ID
+            type: BIGINT
+        - column:
+            name: CREATED_BY
+            type: VARCHAR(255)
+        - column:
+            name: CREATED_DATE
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: UPDATED_BY
+            type: VARCHAR(255)
+        - column:
+            name: UPDATED_DATE
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: API_KEY
+            type: VARCHAR(255)
+        - column:
+            name: APP_NAME
+            type: VARCHAR(255)
+        tableName: APP
+- changeSet:
+    id: 1669788767035-2
+    author: btoledo (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: USER_INFOPK
+            name: ID
+            type: BIGINT
+        - column:
+            name: CREATED_BY
+            type: VARCHAR(255)
+        - column:
+            name: CREATED_DATE
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: UPDATED_BY
+            type: VARCHAR(255)
+        - column:
+            name: UPDATED_DATE
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: PASSWORD
+            type: VARCHAR(255)
+        - column:
+            name: USERNAME
+            type: VARCHAR(255)
+        tableName: USER_INFO

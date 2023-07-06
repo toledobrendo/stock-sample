@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: /db/changelog/0.0.1-SNAPSHOT/1669788764703-changelog.yaml
+  - include:
+      file: /db/changelog/0.0.1-SNAPSHOT/1669788764704-changelog.yaml
+  - include:
+      file: /db/changelog/0.0.1-SNAPSHOT/1669880671248-changelog.yaml

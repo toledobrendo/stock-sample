@@ -1,0 +1,46 @@
+<div class="flex-container">
+  <mat-card class="watchlist">
+    <h2>Watchlist</h2>
+    <table mat-table [dataSource]="watchlist">
+      <ng-container matColumnDef="stock">
+        <th mat-header-cell *matHeaderCellDef>Stock</th>
+        <td mat-cell *matCellDef="let stock">{{stock.name}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="currentValue">
+        <th mat-header-cell *matHeaderCellDef>Current Value</th>
+        <td mat-cell *matCellDef="let stock">{{stock.currentPrice}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="watchValue">
+        <th mat-header-cell *matHeaderCellDef>Watch Value</th>
+        <td mat-cell *matCellDef="let stock">{{stock.price}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="watchAction">
+        <th mat-header-cell *matHeaderCellDef>Watch Action</th>
+        <td mat-cell *matCellDef="let stock">{{stock.action}}</td>
+      </ng-container>0
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let stock">
+          <button mat-raised-button class="mr-10" (click)="edit(stock)">Edit</button>
+          <button mat-raised-button (click)="delete(stock)">Delete</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row [ngClass]="{'watch-alert': isImportant(row)}" *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <button mat-raised-button (click)="add()">Add</button>
+  </mat-card>
+  <mat-card class="status">
+    <h2>Server Status</h2>
+    <div>Health:
+      <span *ngIf="serverHealth.status == 'BAD'"><mat-icon class="sm red">highlight_off</mat-icon> Bad</span>
+      <span *ngIf="serverHealth.status == 'GOOD'"><mat-icon class="sm green">check_circle_outline</mat-icon> Good</span>
+    </div>
+    <div>Last Update: {{serverHealth.date | date: 'medium'}}</div>
+  </mat-card>
+</div>

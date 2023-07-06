@@ -1,0 +1,46 @@
+mat-card {
+  box-sizing: border-box;
+  margin-top: 20px;
+  padding: 30px;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.flex-container {
+  width: 100%;
+  display: flex;
+}
+
+.green {
+  color: green;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.red {
+  color: red;
+}
+
+.sm {
+  height: 14px;
+  width: 14px;
+  font-size: 14px;
+}
+
+.status {
+  width: 30%;
+}
+
+.watch-alert {
+  background-color: palegreen;
+}
+
+.watchlist {
+  width: 70%;
+  margin-right: 30px;
+}

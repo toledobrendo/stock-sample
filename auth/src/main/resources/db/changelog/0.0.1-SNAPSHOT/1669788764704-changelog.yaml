@@ -1,0 +1,8 @@
+databaseChangeLog:
+- changeSet:
+    id: 1669788767035-3
+    author: btoledo (generated)
+    changes:
+    - sqlFile:
+        path: /db/changelog/0.0.1-SNAPSHOT/sql/20221201-default-app-user-info.sql
+
