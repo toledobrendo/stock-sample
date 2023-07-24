@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8082',
+  apiUrl: 'http://stock.proglang.com:8082',
   pageUrl: 'http://stock.btagila.com'
 };
 
