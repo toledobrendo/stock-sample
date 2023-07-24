@@ -55,7 +55,7 @@ public class WebSecurityConfig {
                 "http://localhost:8080",
                 "http://photog.btagila.com",
                 "http://localhost:8082",
-                "http://stockbe.btagila.com"));
+                "http://stock.proglang.com"));
         corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT","OPTIONS","PATCH", "DELETE"));
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setExposedHeaders(List.of("Authorization"));
