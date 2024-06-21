@@ -62,8 +62,7 @@ public class WebSecurityConfig {
 
         http
                 .csrf().disable()
-                .cors().configurationSource(request -> corsConfiguration)
-                .and()
+                .cors().disable()
                 .authorizeRequests()
                     .antMatchers("/authenticate").permitAll()
                     .antMatchers("/check-auth").permitAll()

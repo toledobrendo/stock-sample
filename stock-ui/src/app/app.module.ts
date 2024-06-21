@@ -23,6 +23,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {WatchService} from "./service/watch.service";
 import {MatIconModule} from "@angular/material/icon";
 import {HealthService} from "./service/health.service";
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {HealthService} from "./service/health.service";
     LoginComponent,
     DashboardComponent,
     HomeComponent,
-    EditWatchComponent
+    EditWatchComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,
