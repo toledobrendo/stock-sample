@@ -1,8 +1,6 @@
 # BASE IMAGE with an alias #
-FROM node:18.12.1-alpine3.16 as build
+FROM node:18.19.1-alpine3.19 as build
 WORKDIR /app
-
-RUN npm set timeout=100000
 
 # Install Angular CLI to run Build #
 RUN npm install -g @angular/cli
@@ -12,7 +10,7 @@ RUN apk update && apk upgrade && \
 RUN git --version
 
 COPY ./package.json .
-RUN npm install --loglevel verbose
+RUN npm install
 COPY . .
 RUN ng build --configuration production
 
